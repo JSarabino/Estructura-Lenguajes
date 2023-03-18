@@ -44,49 +44,6 @@ if __name__ == '__main__':
     #Pintar matriz MPintar(usuario)
     pintarMPintar(MPintar)
 
-   
-    """
-    rondasJugadas = 0
-    rondaGanada = 0
-    aciertos = 0
-    #Aciertos
-    while True:
-
-        #Pedir filas y columnas entre los valores permitidos
-        while True:
-                
-            fila = int(input("Digite el numero de la fila (opcion 0,1,2): "))
-            if (fila >= 0) and (fila <= 2):
-                break
-        
-        while True:
-            columna = int(input("Digite el numero de la columna (opcion 0,1,2): "))
-            if (columna >= 0) and (columna <= 2):
-                break
-            
-        #Logica
-        if M[fila][columna] == 1:
-            MPintar[fila][columna] = 1
-            pintarMPintar(MPintar)
-            aciertos = aciertos + 1
-        else:
-            rondasJugadas = rondasJugadas + 1
-            aciertos = 0
-            print("Ronda perdida")
-            break
-            
-        print("Aciertos: ", aciertos)
-        
-        #Condicion de salida
-        if aciertos == 3:
-            rondasJugadas = rondasJugadas + 1
-            rondaGanada = rondaGanada + 1
-            break
-
-    print("Rondas ganadas: ",rondaGanada)
-    print("Rondas jugadas: ", rondasJugadas)
-
-     """
     rondasJugadas = 0
     rondaGanada = 0
     aciertos = 0
@@ -115,8 +72,13 @@ if __name__ == '__main__':
                 aciertos = aciertos + 1
             else:
                 rondasJugadas = rondasJugadas + 1
-                aciertos = 0
                 print("Ronda perdida\n")
+                print("\n--NUEVA RONDA--")
+                M = llenarM(M)
+                pintarM(M)
+                MPintar = [['*','*','*'],['*','*','*'],['*','*','*']]
+                pintarMPintar(MPintar)
+                aciertos = 0
                 break
                 
             print("Aciertos: ", aciertos)
@@ -126,6 +88,15 @@ if __name__ == '__main__':
                 aciertos = 0
                 rondasJugadas = rondasJugadas + 1
                 rondaGanada = rondaGanada + 1
+
+                if rondasJugadas == 3:
+                    print("\nFIN  DEL JUEGO")
+                else:
+                    print("\n--NUEVA RONDA--")
+                    M = llenarM(M)
+                    pintarM(M)
+                    MPintar = [['*','*','*'],['*','*','*'],['*','*','*']]
+                    pintarMPintar(MPintar)
                 break
         
         print("\nRondas jugadas: ", rondasJugadas)
@@ -137,13 +108,6 @@ if __name__ == '__main__':
     #print("Rondas jugadas: ", rondasJugadas)
     
     if rondaGanada < 2:
-        print("Juego perdido")
+        print("Juego perdido\n")
     else:
-        print("Juego ganado")
-    
-
-
-    
-
-    
-
+        print("Juego ganado\n")

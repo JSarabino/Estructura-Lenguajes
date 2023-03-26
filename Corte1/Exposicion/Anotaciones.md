@@ -18,6 +18,7 @@
         Son lenguajes de marcado que nos ayudan a crear y definir esos elementos
 
 
+
 ### Tipos de datos:
 - undefined : valor por defecto cuando no se asigna un valor
 - null : nulo
@@ -65,6 +66,18 @@
     ```
 - numer: tipo de dato numerico
 - object
+    ```JavaScript
+    const myHonda = {
+        color: "red",
+        wheels: 4,
+        engine: { cylinders: 4, size: 2.2 }
+    };
+
+    console.log(myHonda.engine.cylinders);
+    console.log(myHonda["engine"]["cylinders"]);
+    //Resultado
+    4
+    ```
 
 ### Tipos de variables:
 - var
@@ -87,6 +100,16 @@ a +=
 a -=
 a *=
 a /=
+```
+Operadores logicos
+```JavaScript
+a == b // comparacion comun
+a === b // comparacion estricta
+a > b
+a >= b
+a < b
+a <= b
+a && b
 ```
 ### Arreglos
 ```JavaScript
@@ -133,4 +156,170 @@ miArreglo.unshift() //Agregar al inicio del arreglo
 function mostrarMensaje(){
 
 }
+```
+
+
+## Estructuras Repetitivas Javascript
+
+Las estructuras repetitivas Javascript son aquellas que nos permiten realizar una misma acción un número determinado de veces. El número de veces puede ser un contador o la evaluación de una condición.
+
+Existen varias estructuras repetitivas en Javascript:
+
+* for
+* while
+* do..while
+* for..in
+* for..of
+
+Y algunas sentencias que nos ayudan dentro de las estructuras repetitivas:
+
+* break
+* continue
+* etiquetas
+
+Veamos cada una de estas estructuras repetitivas Javascript en detalle.
+## For
+```JavaScript
+for (asignacion_inicial;condición;incremento) {
+  // Bloque de sentencias
+ }
+ ```
+Si, por ejemplo, queremos ejecutar un bloque de sentencias 10 veces, podremos utilizar el siguiente código.
+```JavaScript
+for (let x=1;x<=10;x++) {
+  console.log(x);
+}
+```
+## While
+```JavaScript
+while (condición) {
+  // Bloque de sentencias
+}
+```
+Así, si queremos ejecutar el bucle 10 veces mediante una estructura repetitiva while tendremos el siguiente código:
+```JavaScript
+let x = 1;
+while (x<=10) {
+  console.log(x);
+  x++;
+}
+```
+## Do..While
+```JavaScript
+do {
+  // Bloque de sentencias
+} while (condición);
+```
+Si queremos ejecutar la estructura repetitiva do-while 10 veces, tendremos el siguiente código:
+```JavaScript
+let x = 1;
+do {
+  console.log(x);
+  x++;
+} while (x<=10);
+```
+Los bucles infinitos son aquellos cuya condición no se cumple nunca. Es por ello que el código se ejecuta infinitamente sin finalizar el programa. Es por ello que siempre deberemos de asegurarnos que dentro del bloque de sentencias hay una sentencia que pueda alterar la condición y evitar así los dañinos bucles infinitos.
+### Sentencia break
+La ejecución de la sentencia break lo que hace es que automáticamente se salga del bucle y pase a ejecutarse la siguiente sentencia.
+```JavaScript
+let x = 1;
+while (x<=10) {
+  if (x==5) {
+    break;
+  }
+  console.log(x);
+  x++;
+}
+```
+Etiquetas
+El sistema de etiquetas Javascript nos permite agrupar un conjunto de sentencias dentro de un programa para poder saltar a ellas cuando queramos.
+
+Para poder etiquetar las sentencias deberemos de utilizar la estructura:
+```JavaScript
+etiqueta:
+  sentencias;
+Por ejemplo podríamos etiquetar un bucle de la siguiente forma:
+
+MiBucle:
+  let x = 1;
+  while (x<=10) {
+    console.log(x);
+    x++;
+  }
+```
+Como hemos visto antes la etiqueta se compagina con la sentencia break. De esta manera podemos tener el siguiente código:
+```JavaScript
+let x = 1;
+let y = 1;
+
+inicio:
+ while (x<10) {
+  console.log(x);
+  while (y<10) {
+    console.log (x + ',' + y);
+    y++;
+    if (y==5) {
+      break inicio;
+    }
+  }
+  x++;
+  y = 0;
+}
+```
+Esto se utiliza sobre todo si tenemos bucles anidados. Ya que al poner el break con la etiqueta del primer bucle lo que hace es salirse de los dos bucles, mientras que si hubiésemos utilizado solo un break habría salido únicamente del primer bucle.
+
+Por consola veremos lo siguiente:
+```JavaScript
+1
+1,1
+1,2
+1,3
+1,4
+```
+### Sentencia Continue
+Otra sentencia parecida a break que podemos ejecutar es continue. La estructura de la sentencia continue es la siguiente:
+```JavaScript
+continue [etiqueta];
+```
+Tal y como ocurría con el break, la sentencia continue puede utilizarse con y sin etiqueta. Cuando utilizamos la sentencia continue lo que estamos haciendo es acabar el bucle en el que estamos, pero no salta a la siguiente sentencia fuera del bucle, si no que salta a la siguiente iteración.
+```JavaScript
+let x = 0;
+while (x<10) {
+  x++;
+  if (x%2==0) {
+    continue;
+  }
+  console.log(x);
+}
+```
+
+Utilizamos el mismo código que con las etiquetas break, pero en este caso con una sentencia continue. Así lo que sucederá es que se saldrá desde el bucle interno hasta el externo, pero en vez de a la sentencia siguiente, realizará una nueva iteración.
+```JavaScript
+let x = 1;
+let y = 1;
+
+inicio:
+ while (x<10) {
+  console.log(x);
+  while (y<10) {
+    console.log (x + ',' + y);
+    y++;
+    if (y==5) {
+      continue inicio;
+    }
+  }
+  x++;
+  y = 0;
+}
+En este caso, por consola veremos lo siguiente:
+
+1
+1,1
+1,2
+1,3
+1,4
+1
+1,5
+1,6
+1,7 …
 ```
